@@ -3,9 +3,11 @@ import {
   Plugins,
 } from "@persephia/chaos-engine";
 import { examplePlugin } from "./example";
+import { controlsPlugin } from "./controls";
 
 export const Keys = {
-  TAG: 'tag'
+  TAG: 'tag',
+  RAW_KEYS: 'raw-keys'
 } as const;
 
 export const Stages = {
@@ -17,6 +19,7 @@ export const createWorld = () => {
   const world = new World()
     .addPlugin(Plugins.corePlugin)
     .addPlugin(Plugins.debugPlugin)
+    .addPlugin(controlsPlugin)
     .addPlugin(examplePlugin)
 
   return world;

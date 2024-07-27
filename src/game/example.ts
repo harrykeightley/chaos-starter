@@ -4,8 +4,8 @@ export const examplePlugin = (world: World): World => {
   return world.addSystem(exampleSystem)
     .addSystem(logAllTags)
     .addSystemDependency(logAllTags, exampleSystem)
-    .addSystem(die)
-    .addSystemDependency(die, logAllTags)
+    //.addSystem(die)
+    //.addSystemDependency(die, logAllTags)
 }
 
 const exampleSystem: System = async (world) => {

@@ -9,8 +9,8 @@ import { Keys } from "..";
 export const controlsPlugin = (world: World): World => {
   return world
     .addSystem(captureKeys, ReservedStages.START_UP)
-    .addSystem(updateRawEvents, ReservedStages.UPDATE);
-  // .addSystem(logRawEvents).addSystemDependency(logRawEvents, updateRawEvents);
+    .addSystem(updateRawEvents, ReservedStages.UPDATE)
+    .addSystem(logRawEvents).addSystemDependency(logRawEvents, updateRawEvents);
 };
 
 let rawEvents: KeyboardEvent[] = [];
@@ -32,9 +32,9 @@ export const updateRawEvents: System = async () => {
   return result;
 };
 
-// const logRawEvents: System = async (world) => {
-//   const events = world.getEvents(Keys.RAW_KEYS);
-//
-//   if (events.length === 0) return;
-//   console.log(events);
-// };
+const logRawEvents: System = async (world) => {
+  const events = world.getEvents(Keys.RAW_KEYS);
+
+  if (events.length === 0) return;
+  console.log(events);
+};
